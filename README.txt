@@ -1,5 +1,12 @@
 Work-In-Progress: streamlining the pipeline for user convenience. 
 
+full anaconda environment provided in enviromnent.yml
+
+cadical: clone to ./postprocess/cadical
+	build: ./configure && make
+	make dir log under ./postprocess/cadical/
+drat-trim: clone to ./postprocess/drat-trim
+	build: make
 
 generating the Tseitin data:
 	- /HardCore/tseitin/cnfgen_tseitin.py:
@@ -18,6 +25,7 @@ generating the Tseitin data:
 		- edit path at l. 5,6,8
 		- run python filter_triv_to //this script filters the tseitin cnfs which have excessively low runtimes
 preparing the data:
+Place
 	- /HardCore/scripts/solve_core.sh
 		- bash solve_core.sh dataset/{data_name} // this script retrieves the cores
 Training the model:
