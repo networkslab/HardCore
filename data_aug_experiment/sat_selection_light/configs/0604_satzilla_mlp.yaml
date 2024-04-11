@@ -1,0 +1,48 @@
+# pytorch_lightning==1.9.2
+exp_name: &exp_name 0604_satzilla_mlp  # Experiment name. Can choose any name.
+sat_data: sat-reg
+seed_everything: 0
+trainer:
+  logger:
+    - class_path: pytorch_lightning.loggers.TensorBoardLogger
+      init_args:
+          save_dir: lightning_logs 
+          name: *exp_name 
+  enable_checkpointing: true
+  callbacks:
+    - class_path: pytorch_lightning.callbacks.ModelCheckpoint
+      init_args:
+        monitor: val_loss
+        mode: min
+        save_last: true
+    - class_path: pytorch_lightning.callbacks.EarlyStopping
+      init_args:
+        monitor: val_loss
+        patience: 20
+        mode: min
+  devices: [1]
+  max_epochs: 1000
+  log_every_n_steps: 50 
+  accelerator: gpu
+model:
+  sat_encoder:
+    class_path: model.satzilla.MLPRegressor
+    init_args:
+      in_dim: 33 
+      hidden_dim: 600
+      num_hid_layers: 3
+      num_classes: 7
+  lr: 5e-3 
+  lr_scheduler_flag: False
+data:
+  batch_size: 32
+  train_val_split:
+  - 0.9
+  - 0.1
+  num_workers: 32
+  split_idx: 0
+  debug: false
+  add_clause_pe: false
+ckpt_path: null 
+flag_loss_weights: null
+loss_type: MSE
