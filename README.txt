@@ -1,31 +1,21 @@
 Work-In-Progress: streamlining the pipeline for user convenience. 
 
-full anaconda environment provided in enviromnent.yml
 
-cadical: clone to ./postprocess/cadical
-	build: ./configure && make
-	make dir log under ./postprocess/cadical/
-drat-trim: clone to ./postprocess/drat-trim
-	build: make
-
-generating the Tseitin data:
-	- /HardCore/tseitin/cnfgen_tseitin.py:
-		- edit path at l. 34, 48, 49, 53
-		- run python cnfgen_tseitin.py  //this script generates the tseitin cnfs
-	- /HardCore/tseitin/run_original.py:
+generating the ksat data:
+	- /HardCore/ksat/ksat.py 
+		- edit path at l. 16
+		- run python ksat.py  //this script generates the ksat cnfs
+	- /HardCore/ksat/run_original.py:
 		- edit path at 35, 37, 38, 40
 		- run python run_original.py //this script runs the 7 solvers and saves their logs
-	- /HardCore/tseitin/parse.py
+	- /HardCore/ksat/parse.py
 		- edit path at l. 8, 10, 11
 		- run python parse.py // this script parses solver logs and collects runtime information
-	- /HardCore/tseitin/fix_csvs.py 
+	- /HardCore/ksat/fix_csvs.py 
 		- edit path at l. 5, 6
 		- run fix_csvs.py // this script re-formats the csv output by parse.py for use 
-	- /HardCore/tseitin/filter_triv_to.py:
-		- edit path at l. 5,6,8
-		- run python filter_triv_to //this script filters the tseitin cnfs which have excessively low runtimes
+ksat generation will yield some satisfiable problems, which should be discarded.
 preparing the data:
-Place
 	- /HardCore/scripts/solve_core.sh
 		- bash solve_core.sh dataset/{data_name} // this script retrieves the cores
 Training the model:

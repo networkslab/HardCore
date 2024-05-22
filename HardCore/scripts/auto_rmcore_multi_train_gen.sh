@@ -17,7 +17,7 @@ for input in $dir_path/*.cnf; do
   # bash remove_core.sh $input ${core_dir_path}/${cnf_name::-3}.cnf $num_iter $goal_time &> log/${cnf_name}_rm.log &
   echo $input ${core_dir_path}/${cnf_name}.cnf $num_iter $goal_time $class_name $cnf_name
   break
-  bash remove_core.sh $input ${core_dir_path}/${cnf_name}.cnf $num_iter $goal_time $class_name&> log/${class_name}_${cnf_name}_rm.log &
+  bash train_pair_core.sh $input ${core_dir_path}/${cnf_name}.cnf $num_iter $goal_time $class_name&> log/${class_name}_${cnf_name}_rm.log &
   runningJobs=`jobs -r | wc -l`
   echo "Running Jobs: ${runningJobs}"
 
