@@ -1,3 +1,8 @@
+The reproduction code for the paper "HardCore Generation: Generating Hard UNSAT Problems for Data Augmentation" from authors 
+Joseph Cotnareanu, Zhanguang Zhang, Hui-Ling Zhen, Yingxue Zhang, Mark Coates, accepted at NeurIPS 2024.
+Arxiv preprint: https://arxiv.org/abs/2409.18778. 
+
+
 Work-In-Progress: streamlining the pipeline for user convenience. 
 
 
